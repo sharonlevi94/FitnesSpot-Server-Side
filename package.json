@@ -1,0 +1,11 @@
+{
+  "name": "FitnessSpotRest",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "connect": "^3.7.0",
+    "express": "4.17.1",
+    "express-promise-router": "4.0.1",
+    "request-promise": "4.2.6"
+  }
+}
