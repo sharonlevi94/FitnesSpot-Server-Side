@@ -6,15 +6,15 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-    let result = logic.getActivities(req.query);
-    res.status(200).json({result});
+    async (req, res) => {
+    let result = await logic.getActivities(req.query)
+        res.status(200).json({result})
     });
 
 router.post('/',
-    (req, res) => {
-        const result = logic.createActivity(req.body.activity);
-        res.status(200).json({result});
+    async (req, res) => {
+    let result = await logic.createActivity(req.body.activity)
+        res.status(200).json({result})
     });
 
 router.use('/:activityId', require('./activity'));

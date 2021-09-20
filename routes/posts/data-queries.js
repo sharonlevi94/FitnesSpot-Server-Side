@@ -7,8 +7,8 @@ module.exports = {
     addPost
 }
 
-function selectPosts(quary){
-    let posts =  dataBase.getObjects(tableName);
+async function selectPosts(quary){
+    let posts = await dataBase.getObjects(tableName);
 
     if(quary.keyWord){
         posts = posts.filter(post => post.content.includes(quary.keyWord));
@@ -17,5 +17,5 @@ function selectPosts(quary){
 }
 
 function addPost(post){
-    dataBase.insert(tableName, post);
+    return dataBase.insert(tableName, post);
 }

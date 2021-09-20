@@ -6,14 +6,14 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-        let result = logic.getPosts(req.query);
+    async (req, res) => {
+        let result = await logic.getPosts(req.query);
         res.status(200).json({result});
     });
 
 router.post('/',
-    (req, res) => {
-        const result = logic.createPost(req.body.post);
+    async (req, res) => {
+        const result = await logic.createPost(req.body.post);
         res.status(200).json({result});
     });
 

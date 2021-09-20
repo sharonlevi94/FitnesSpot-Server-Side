@@ -9,22 +9,22 @@ module.exports = {
     patchActivity
 }
 
-function selectActivity(id){
-    let objects =  dataBase.getObjects(tableName);
-    for(let obj of objects){
-        if(obj.id == id)
-            return obj;
-    }
+async function selectActivity(id){
+   let objects = await dataBase.getObjects(tableName, id);
+   for(let obj of objects){
+       if(obj.id === id)
+           return obj;
+   }
 }
 
 function updateActivity(id, activity){
-    dataBase.update(tableName, id, activity);
+    return dataBase.update(tableName, id, activity);
 }
 
 function deleteActivity(id){
-    dataBase.remove(tableName, id);
+    return dataBase.remove(tableName, id);
 }
 
 function patchActivity(id, newData){
-    dataBase.patch(tableName, id, newData);
+    return dataBase.patch(tableName, id, newData);
 }

@@ -10,8 +10,8 @@ function selectAddress(id){
     return dataBase.getObjects(tableName, id);
 }
 
-function updateAddress(id, newAddress){
-    let newObj = dataBase.getObjects(tableName, id);
+async function updateAddress(id, newAddress){
+    let newObj = await dataBase.getObjects(tableName, id);
     newObj[0].address = newAddress;
-    dataBase.update(tableName, id, newObj[0]);
+    return dataBase.update(tableName, id, newObj[0]);
 }

@@ -6,11 +6,11 @@ module.exports = {
     getDate, updateDate
 }
 
-function getDate(id){
-    let result =  dataQueries.selectDate(id);
+async function getDate(id){
+    let result = await dataQueries.selectDate(id);
     return result[0].date;
 }
 
 function updateDate(id, date){
-    dataQueries.updateDate(id, date);
+    return dataQueries.updateDate(id, date);
 }

@@ -6,14 +6,14 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-        let result = logic.getDate(req.params.activityId);
+    async (req, res) => {
+        let result = await logic.getDate(req.params.activityId);
         res.status(200).json({result});
     });
 
 router.put('/',
-    (req, res) => {
-        const result = logic.updateDate(Number(req.params.activityId), req.body.date);
+    async (req, res) => {
+        const result = await logic.updateDate(Number(req.params.activityId), req.body.date);
         res.status(200).json({result});
     });
 

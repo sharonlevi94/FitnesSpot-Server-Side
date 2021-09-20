@@ -7,8 +7,8 @@ module.exports = {
     addUser
 }
 
-function  selectUsers(quary){
-    let users =  dataBase.getObjects(tableName);
+async function  selectUsers(quary){
+    let users = await dataBase.getObjects(tableName);
 
     if(quary.firstName)
         users = users.filter(user => user.first_name == quary.firstName);
@@ -20,5 +20,5 @@ function  selectUsers(quary){
 }
 
 function addUser(user){
-    dataBase.insert(tableName, user);
+    return dataBase.insert(tableName, user);
 }

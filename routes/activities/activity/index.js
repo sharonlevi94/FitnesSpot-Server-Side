@@ -6,10 +6,10 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 //-----------------------------------------------------------------------------
 router.get('/',
-    (req, res) => {
-        let result = logic.getActivity(Number(req.params.activityId));
+    async (req, res) => {
+        let result = await logic.getActivity(Number(req.params.activityId));
         res.status(200).json({result});
-    });
+        });
 //-----------------------------------------------------------------------------
 router.put('/',
     (req, res) => {

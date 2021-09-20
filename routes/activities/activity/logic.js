@@ -18,9 +18,9 @@ function updateActivity(id, activity){
 }
 
 function deleteActivity(id){
-    dataQueries.deleteActivity(id);
+    return dataQueries.deleteActivity(id);
 }
 
 function patchActivity(id, newData){
-    dataQueries.patchActivity(id, newData);
+    return dataQueries.patchActivity(id, newData);
 }

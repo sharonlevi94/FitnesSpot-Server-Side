@@ -6,15 +6,16 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-        let result = logic.getUsers(req.query);
+     async (req, res) => {
+        let result = await logic.getUsers(req.query);
         res.status(200).json({result});
     });
 
 router.post('/',
-    (req, res) => {
-        const result = logic.createUser(req.body.user);
+    async (req, res) => {
+        const result = await logic.createUser(req.body.user);
         res.status(200).json({result});
     });
 
+router.use('/:userId', require('./user'));
 module.exports = router;

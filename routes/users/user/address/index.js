@@ -6,17 +6,15 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-        let result = logic.getAddress(req.params.userId);
+    async (req, res) => {
+        let result = await logic.getAddress(req.params.userId);
         res.status(200).json({result});
     });
 
 router.put('/',
-    (req, res) => {
-        const result = logic.updateAddress(Number(req.params.userId), req.body.address);
+    async (req, res) => {
+        const result = await logic.updateAddress(Number(req.params.userId), req.body.address);
         res.status(200).json({result});
     });
-
-router.use('/:partOfDate', require('./partOfDate'));
 
 module.exports = router;

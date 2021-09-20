@@ -6,8 +6,8 @@ const router = require('express-promise-router')({
     logic = require('./logic')
 
 router.get('/',
-    (req, res) => {
-        let result = logic.getPartOfDate(req.params.activityId, req.params.partOfDate);
+    async (req, res) => {
+        let result = await logic.getPartOfDate(req.params.activityId, req.params.partOfDate);
         res.status(200).json({result});
     });
 

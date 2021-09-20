@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function getActivities(quary){
-    return dataQueries.selectActivities(quary);
+   return dataQueries.selectActivities(quary);
 }
 
 function createActivity(activity){

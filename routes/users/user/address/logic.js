@@ -6,11 +6,11 @@ module.exports = {
     getAddress, updateAddress
 }
 
-function getAddress(id){
-    let result =  dataQueries.selectAddress(id);
-    return result[0].date;
+async function getAddress(id){
+    let result = await  dataQueries.selectAddress(id);
+    return result[0].address;
 }
 
 function updateAddress(id, date){
-    dataQueries.updateAddress(id, date);
+    return dataQueries.updateAddress(id, date);
 }

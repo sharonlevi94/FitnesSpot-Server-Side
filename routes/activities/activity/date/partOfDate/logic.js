@@ -6,8 +6,8 @@ module.exports = {
     getPartOfDate,
 }
 
-function getPartOfDate(id, part){
+async function getPartOfDate(id, part){
     let result = {}
-    result[part] = dataQueries.selectPartOfDate(id, part);
+    result[part] = await dataQueries.selectPartOfDate(id, part);
     return result;
 }
