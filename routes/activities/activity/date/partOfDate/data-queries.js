@@ -3,7 +3,7 @@
 const tableName = 'activities',
     dataBase = require('../../../../../middleware/database')
 module.exports = {
-    selectPartOfDate
+    selectPartOfDate, updatePartOfDate
 }
 
 async function selectPartOfDate(id, part){
@@ -11,6 +11,6 @@ async function selectPartOfDate(id, part){
     return result[0].date[part];
 }
 
-/*function updatePartOfDate(id, part){
-    dataBase.update(tableName, id, date);
-}*/
+function updatePartOfDate(id, part){
+    return dataBase.patch(tableName, id, part);
+}

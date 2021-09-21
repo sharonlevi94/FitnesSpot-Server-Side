@@ -7,6 +7,16 @@ const router = require('express-promise-router')({
     validate = require('express-jsonschema').validate
 
 router.get('/',
+    validate( {
+        query:{
+            type: 'object',
+            additionalProperties: false,
+            properties:{
+                firstName: {type: 'string', format: 'alpha', required: false},
+                lastName: {type: 'string', format: 'alpha', required: false}
+            }
+        }
+    }),
      async (req, res) => {
         let result = await logic.getUsers(req.query);
         res.status(200).json({result});
@@ -46,5 +56,15 @@ router.post('/',
         res.status(200).json({result});
     });
 
-router.use('/:userId', require('./user'));
+router.use('/:userId',
+    validate( {
+        params:{
+            type: 'object',
+            additionalProperties: false,
+            properties:{
+                userId: {type: 'number', format: 'numeric', required: true},
+            }
+        }
+    }),
+    require('./user'));
 module.exports = router;
