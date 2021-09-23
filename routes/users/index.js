@@ -32,20 +32,20 @@ router.post('/',
                     type: 'object',
                     additionalProperties: false,
                     properties:{
-                        first_name: {type: 'string',format:'alpha', maxLength: 10, required: true},
-                        last_name: {type: 'string',format:'alpha', maxLength: 10, required: true},
+                        first_name: {type: 'string', maxLength: 10, required: true},
+                        last_name: {type: 'string', maxLength: 30, required: true},
                         user_name: {type: 'string',format:'alphanumeric', required: true},
                         password: {type: 'string',format:'alphanumeric',minLength: 8, required: true},
                         age: {type: 'number', format: 'numeric', minimum: 18, maximum: 120, required: true},
                         address: {type: 'object',
                             required: false,
                             properties: {
-                                city: {type: 'string',format:'alpha', required: true},
-                                street: {type: 'string',format:'alpha', required: true},
+                                city: {type: 'string', required: false},
+                                street: {type: 'string', required: false},
                                 number: {type: 'number',format:'numeric', required: false},
                             }},
-                        phone_number: {type: 'number', format: 'numeric', minimum: 10, maximum: 10, required: false},
-                        favorite_sport: {type: 'string',format:'alpha', required: true},
+                        phone_number: {type: 'string', minLength: 10, maxLength: 10, required: false},
+                        favorite_sports: {type: 'string', required: true},
                     }
                 }
             }
@@ -62,7 +62,7 @@ router.use('/:userId',
             type: 'object',
             additionalProperties: false,
             properties:{
-                userId: {type: 'number', format: 'numeric', required: true},
+                userId: {type: 'string', required: true},
             }
         }
     }),

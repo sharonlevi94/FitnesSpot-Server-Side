@@ -1,6 +1,6 @@
 'use strict';
 
-const tableName = 'posts',
+const tableName = 'settings-posts',
     dataBase = require('../../middleware/database')
 module.exports = {
     selectPosts,
