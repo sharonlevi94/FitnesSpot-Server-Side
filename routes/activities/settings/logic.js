@@ -6,6 +6,7 @@ module.exports = {
     getSettings,
 }
 
-function getSettings(settings){
-   return dataQueries.selectSettings(settings);
+function getSettings(){
+    return dataQueries.selectSettings();
 }
+

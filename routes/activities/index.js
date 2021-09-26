@@ -27,7 +27,7 @@ router.post('/',
             type: 'object',
             additionalProperties: false,
             properties:{
-                activity:{
+                item:{
                     type: 'object',
                     additionalProperties: false,
                     properties:{
@@ -49,20 +49,22 @@ router.post('/',
                                 hours:{type: 'number', format: 'numeric', minimum: 0, maximum: 1000, required: false},
                                 minutes:{type: 'number', format: 'numeric', minimum: 0, maximum: 59, required: true}
                             }},
-                        location: {type: 'string',format:'alpha', required: true},
-                        calories: {type: 'number', format: 'numeric', minimum: 0, maximum: 10000, required: false},
+                        location: {type: 'string', required: true},
+                        calories: {type: 'string', format: 'numeric', minimum: 0, maximum: 10000, required: false},
                         difficulty: {type: 'number', format: 'numeric', minimum: 1, maximum: 10, required: false},
-                        note: {type: 'string', format: 'alpha', required: false},
+                        note: {type: 'string', required: false},
                     }
                 }
             }
         }
     }),
     async (req, res) => {
-    let result = await logic.createActivity(req.body.activity)
+    let result = await logic.createActivity(req.body.item)
         res.status(200).json({result})
     });
 
+
+router.use('/settings', require('./settings'));
 router.use('/:activityId',
     validate( {
         params:{
@@ -74,5 +76,8 @@ router.use('/:activityId',
         }
     }),
     require('./activity'));
+
+
+
 
 module.exports = router;

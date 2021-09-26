@@ -1,10 +1,11 @@
 'use strict';
-
 const router = require('express-promise-router')({
         mergeParams: true
     }),
     logic = require('./logic'),
     validate = require('express-jsonschema').validate
+
+//---------------------------------------------------------------
 
 router.get('/',
     validate( {
@@ -22,13 +23,15 @@ router.get('/',
         res.status(200).json({result});
     });
 
+//---------------------------------------------------------------
+
 router.post('/',
     validate( {
         body:{
             type: 'object',
             additionalProperties: false,
             properties:{
-                user:{
+                item:{
                     type: 'object',
                     additionalProperties: false,
                     properties:{
@@ -36,15 +39,16 @@ router.post('/',
                         last_name: {type: 'string', maxLength: 30, required: true},
                         user_name: {type: 'string',format:'alphanumeric', required: true},
                         password: {type: 'string',format:'alphanumeric',minLength: 8, required: true},
-                        age: {type: 'number', format: 'numeric', minimum: 18, maximum: 120, required: true},
-                        address: {type: 'object',
-                            required: false,
-                            properties: {
-                                city: {type: 'string', required: false},
-                                street: {type: 'string', required: false},
-                                number: {type: 'number',format:'numeric', required: false},
-                            }},
+                        email: {type: 'string', required: true},
                         phone_number: {type: 'string', minLength: 10, maxLength: 10, required: false},
+                        date_of_birth: {type: 'object',
+                            additionalProperties: false,
+                            properties:{
+                                year:{type: 'number', format: 'numeric',required: true},
+                                month:{type: 'number', format: 'numeric', minimum: 1, maximum: 12, required: true},
+                                day:{type: 'number', format: 'numeric', minimum: 1, maximum: 31, required: true}
+                            },
+                        },
                         favorite_sports: {type: 'string', required: true},
                     }
                 }
@@ -52,10 +56,12 @@ router.post('/',
         }
     }),
     async (req, res) => {
-        const result = await logic.createUser(req.body.user);
+        const result = await logic.createUser(req.body.item);
         res.status(200).json({result});
     });
 
+//---------------------------------------------------------------
+router.use('/settings', require('./settings'));
 router.use('/:userId',
     validate( {
         params:{
@@ -67,4 +73,5 @@ router.use('/:userId',
         }
     }),
     require('./user'));
+
 module.exports = router;

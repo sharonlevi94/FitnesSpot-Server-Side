@@ -42,4 +42,5 @@ router.post('/',
         res.status(200).json({result});
     });
 
+router.use('/settings', require('./settings'));
 module.exports = router;
